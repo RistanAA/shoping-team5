@@ -78,7 +78,7 @@ const Reducer = (state = initialState, action) => {
                     }
                 }),
                 
-                cart: [...state.cart, action.payload]
+                cart: [...state.cart,{ ...action.payload , price: action.payload.qty * action.payload.price} ]
             }
         case CANCEL_CART:
             return {

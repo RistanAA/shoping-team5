@@ -5,6 +5,7 @@ import { cancelCart } from "../redux/modules/items";
 const Cart = () => {
   const cartItems = useSelector((state) => state.items.cart);
   const dispatch = useDispatch()
+  console.log(cartItems)
 
   const handleCancel = (id) => {
     dispatch(cancelCart(id))
@@ -16,11 +17,11 @@ const Cart = () => {
     <CartContainer>
       <CartHeader>Cart</CartHeader>
       {cartItems.map((item) => {
-        sum+=item.price * item.qty
+        sum+=item.price
         return (
           <CartItem key={item.id}>
             <ItemTitle>{item.title} x {item.qty}</ItemTitle>
-            <ItemPrice>Rp. {item.price * item.qty}</ItemPrice>
+            <ItemPrice>Rp. {item.price}</ItemPrice>
 
             <ItemButton borderColor={"red"} onClick={() => handleCancel(item.id)}>Cancel</ItemButton>
           </CartItem>
