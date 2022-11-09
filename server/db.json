@@ -6,7 +6,7 @@
       "price": 100000,
       "category": "Sweets",
       "qty": 1,
-      "stock": 0,
+      "stock": 10,
       "status": true
     },
     {
@@ -15,7 +15,7 @@
       "price": 200000,
       "category": "Drinks",
       "qty": 1,
-      "stock": 0,
+      "stock": 10,
       "status": true
     },
     {
@@ -24,7 +24,7 @@
       "price": 300000,
       "category": "Crisp",
       "qty": 1,
-      "stock": 0,
+      "stock": 10,
       "status": true
     }
   ],
@@ -76,6 +76,30 @@
       "status": true,
       "title": "Item 3 db",
       "id": 6
+    },
+    {
+      "category": "Sweets",
+      "price": 300000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 7
+    },
+    {
+      "category": "Drinks",
+      "price": 2000000,
+      "qty": 10,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 8
+    },
+    {
+      "category": "Crisp",
+      "price": 300000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 9
     }
   ]
 }
