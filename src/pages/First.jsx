@@ -19,10 +19,11 @@ const First = () => {
   const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    background-image:
+    background-image:'https://cdn.wallpapersafari.com/62/14/NxhobW.jpg';
   `;
 
   const Orderbtn= styled.button`
+  display:center;
   height: 40px;
   width: 120px;
   background-color: #fff;
