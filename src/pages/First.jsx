@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Layout from "../components/Layout";
 
 const First = () => {
+    const navigate = useNavigate()
     return (
       <Layout>
         <Container>
-            <Orderbtn>
+            <Orderbtn onClick={()=>navigate("/home")}>"Ini First"
             </Orderbtn>
         </Container>
       </Layout>
@@ -20,7 +22,7 @@ const First = () => {
     background-image:
   `;
 
-  const Orderbtn= styled.div`
+  const Orderbtn= styled.button`
   height: 40px;
   width: 120px;
   background-color: #fff;
