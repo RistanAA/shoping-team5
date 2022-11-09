@@ -43,7 +43,7 @@ const initialState = {
     isLoading: false
 }
 
-const rootURL = 'http://localhost:3001'
+const rootURL = 'https://nameless-cliffs-97979.herokuapp.com'
 
 export const __getStoreItems = createAsyncThunk(
     'getStoreItems',

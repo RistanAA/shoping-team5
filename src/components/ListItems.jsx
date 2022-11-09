@@ -2,13 +2,23 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { useState } from "react";
-import { addToCart, plusQty, minusQty, __getStoreItems, __addToCart } from "../redux/modules/items";
-import { useEffect } from "react";
+import {
+  addToCart,
+  plusQty,
+  minusQty,
+  __getStoreItems,
+  __addToCart,
+} from "../redux/modules/items";
+import { useEffect, useState } from "react";
 
 const ListItems = () => {
   // const[item,setItem] = useState()
   const storeItems = useSelector((state) => state.items.storeItem);
   const loading = useSelector((state) => state.items.isLoading);
+
+  const [search, setSearch] = useState("");
+  const [dataStore, setDataStore] = useState([]);
+
   // const storeI = useSelector((state) => state.items);
   const dispatch = useDispatch();
 
@@ -23,10 +33,24 @@ const ListItems = () => {
     dispatch(addToCart(item));
     // dispatch(__addToCart(item))
   };
-  useEffect(()=> {
-    dispatch(__getStoreItems())
-  },[])
+  useEffect(() => {
+    dispatch(__getStoreItems());
+  }, []);
 
+  const handleChange = ({ target: { value } }) => {
+    setSearch(value);
+  };
+
+  const handleSearch = (value, data) => {
+    let query = value.toLowerCase();
+    // console.log(query)
+    // console.log(data)
+    let filtered = data.filter(
+      (item) => item.title.toLowerCase().indexOf(query)>=0
+    );
+    setDataStore(filtered)
+    console.log(filtered)
+  };
 
   // if(loading.isLoading){
   //   console.log('loading...')
@@ -39,9 +63,17 @@ const ListItems = () => {
   return (
     <ListContainer>
       <ListHeader>Item List</ListHeader>
+      <SearchContainer>
+        <SearchInput
+          placeholder="  What do you want?"
+          onChange={handleChange}
+          value={search}
+        />
+        <ItemButton onClick={()=>handleSearch(search, storeItems)}>Search</ItemButton>
+      </SearchContainer>
       <ItemCategory>Sweets</ItemCategory>
       {storeItems.map((item) => {
-        if(item.category === 'Sweets') {
+        if (item.category === "Sweets") {
           return (
             <ListItem key={item.id}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -71,13 +103,13 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
-        }else {
-          return null
+        } else {
+          return null;
         }
       })}
       <ItemCategory>Drinks</ItemCategory>
       {storeItems.map((item) => {
-        if(item.category === 'Drinks') {
+        if (item.category === "Drinks") {
           return (
             <ListItem key={item.id}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -107,13 +139,13 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
-        }else {
-          return null
+        } else {
+          return null;
         }
       })}
       <ItemCategory>Crisp</ItemCategory>
       {storeItems.map((item) => {
-        if(item.category === 'Crisp') {
+        if (item.category === "Crisp") {
           return (
             <ListItem key={item.id}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -143,8 +175,8 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
-        }else {
-          return null
+        } else {
+          return null;
         }
       })}
       {/* <ListItem>
@@ -171,6 +203,19 @@ const ListContainer = styled.div`
   margin: 10px;
   padding: 10px;
   /* display: flex; */
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+const SearchInput = styled.input`
+  height: 40px;
+  width: 350px;
+  border: 1px solid black;
+  border-radius: 12px;
+  /* margin-left: 20px; */
 `;
 
 const ItemCategory = styled.span`
