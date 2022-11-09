@@ -72,7 +72,7 @@ const ListItems = () => {
         <ItemButton onClick={()=>handleSearch(search, storeItems)}>Search</ItemButton>
       </SearchContainer>
       <ItemCategory>Sweets</ItemCategory>
-      {storeItems.map((item) => {
+      {dataStore.map((item) => {
         if (item.category === "Sweets") {
           return (
             <ListItem key={item.id}>
@@ -108,7 +108,7 @@ const ListItems = () => {
         }
       })}
       <ItemCategory>Drinks</ItemCategory>
-      {storeItems.map((item) => {
+      {dataStore.map((item) => {
         if (item.category === "Drinks") {
           return (
             <ListItem key={item.id}>
@@ -144,7 +144,7 @@ const ListItems = () => {
         }
       })}
       <ItemCategory>Crisp</ItemCategory>
-      {storeItems.map((item) => {
+      {dataStore.map((item) => {
         if (item.category === "Crisp") {
           return (
             <ListItem key={item.id}>
