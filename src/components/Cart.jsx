@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { cancelCart, checkout } from "../redux/modules/items";
+import { cancelCart, checkout, __addToCart } from "../redux/modules/items";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.items.cart);
@@ -13,9 +13,13 @@ const Cart = () => {
   const handleCancel = (id) => {
     dispatch(cancelCart(id))
   }
-  const handleCheckout = () => {
-    dispatch(checkout())
-    // console.log(storeI)
+  // const handleCheckout = () => {
+  //   dispatch(checkout())
+  //   // console.log(storeI)
+  // }
+  const handleNavigate = () =>{
+    dispatch(__addToCart())
+    navigate('/checkout')
   }
 
   let sum = 0
@@ -34,7 +38,7 @@ const Cart = () => {
         );
       })}
       <h1>Rp {sum}</h1>
-      <CartButton disabled={cartItems.length > 0?null:'disabled'} borderColor={"green"} onClick={() => navigate('/checkout')}>Done</CartButton>
+      <CartButton disabled={cartItems.length > 0?null:'disabled'} borderColor={"green"} onClick={() => handleNavigate()}>Done</CartButton>
     </CartContainer>
   );
 };

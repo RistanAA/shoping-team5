@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
-import { checkout, refreshCart } from "../redux/modules/items";
+import { refreshCart, __checkout } from "../redux/modules/items";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.items.cart);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
-    dispatch(checkout())
-    dispatch(refreshCart())
-    navigate('/')
+    dispatch(__checkout());
+    dispatch(refreshCart());
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
     // console.log(storeI)
-  }
+  };
   return (
     <Layout>
       <Header title={"Checkout"} />
@@ -31,7 +33,9 @@ const Checkout = () => {
             </CheckoutItem>
           );
         })}
-        <CartButton borderColor={"green"} onClick={() => handleCheckout()}>Checkout</CartButton>
+        <CartButton borderColor={"green"} onClick={() => handleCheckout()}>
+          Checkout
+        </CartButton>
       </CheckoutContainer>
     </Layout>
   );
@@ -48,7 +52,7 @@ const CartButton = styled.button`
   background-color: #fff;
   border-radius: 12px;
   cursor: pointer;
-`
+`;
 
 const CheckoutContainer = styled.div`
   border: 1px solid black;
@@ -72,7 +76,7 @@ const CheckoutItem = styled.div`
 
 const ItemTitle = styled.span`
   text-decoration: none;
-  width: 20%;
+  width: 30%;
 `;
 
 const ItemPrice = styled.span`

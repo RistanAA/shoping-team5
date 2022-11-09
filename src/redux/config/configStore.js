@@ -1,10 +1,13 @@
-import { createStore } from "redux";
-import { combineReducers } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import items from "../modules/items";
 
-const rootReducer = combineReducers({
-    items,
-});
-const store = createStore(rootReducer);
-
+const store = configureStore({
+    reducer: {
+        items: items,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+})
 export default store;

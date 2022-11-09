@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { useState } from "react";
-import { addToCart, minusQty, plusQty } from "../redux/modules/items";
+import { addToCart, plusQty, minusQty, __getStoreItems, __addToCart } from "../redux/modules/items";
+import { useEffect } from "react";
 
 const ListItems = () => {
   // const[item,setItem] = useState()
   const storeItems = useSelector((state) => state.items.storeItem);
+  const loading = useSelector((state) => state.items.isLoading);
   // const storeI = useSelector((state) => state.items);
   const dispatch = useDispatch();
 
@@ -19,7 +21,19 @@ const ListItems = () => {
 
   const handleAdd = (item) => {
     dispatch(addToCart(item));
+    // dispatch(__addToCart(item))
   };
+  useEffect(()=> {
+    dispatch(__getStoreItems())
+  },[])
+
+
+  // if(loading.isLoading){
+  //   console.log('loading...')
+  //   return <h1>loading</h1>
+  // }else{
+  //   console.log('done')
+  // }
 
   // console.log(storeItems)
   return (
@@ -27,7 +41,7 @@ const ListItems = () => {
       <ListHeader>Item List</ListHeader>
       <ItemCategory>Sweets</ItemCategory>
       {storeItems.map((item) => {
-        if(item.category == 'Sweets') {
+        if(item.category === 'Sweets') {
           return (
             <ListItem key={item.id}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -57,11 +71,13 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
+        }else {
+          return null
         }
       })}
       <ItemCategory>Drinks</ItemCategory>
       {storeItems.map((item) => {
-        if(item.category == 'Sweets') {
+        if(item.category === 'Drinks') {
           return (
             <ListItem key={item.id}>
               <ItemTitle>{item.title}</ItemTitle>
@@ -91,6 +107,44 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
+        }else {
+          return null
+        }
+      })}
+      <ItemCategory>Crisp</ItemCategory>
+      {storeItems.map((item) => {
+        if(item.category === 'Crisp') {
+          return (
+            <ListItem key={item.id}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ListStock>stock: {item.stock}</ListStock>
+              <ItemPrice>Rp. {item.price}</ItemPrice>
+              <QtyContainer>
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handleMinus(item.id)}
+                >
+                  -
+                </QtyButton>
+                <QtyInput readOnly value={item.qty} />
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handlePlus(item.id)}
+                >
+                  +
+                </QtyButton>
+              </QtyContainer>
+              <ItemButton
+                borderColor={"blue"}
+                onClick={() => handleAdd(item)}
+                disabled={item.status && item.stock > 0 ? null : "disabled"}
+              >
+                Add
+              </ItemButton>
+            </ListItem>
+          );
+        }else {
+          return null
         }
       })}
       {/* <ListItem>
