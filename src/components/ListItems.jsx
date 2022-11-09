@@ -208,6 +208,7 @@ const ListContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  border-color:yellow;
 `;
 
 const SearchInput = styled.input`
