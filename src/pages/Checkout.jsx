@@ -14,7 +14,7 @@ const Checkout = () => {
     dispatch(__checkout());
     dispatch(refreshCart());
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
       dispatch(__getStoreItems())
     }, 100);
     // console.log(storeI)
