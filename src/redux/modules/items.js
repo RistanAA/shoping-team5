@@ -3,6 +3,8 @@ const ADD_TO_CART = 'ADD_TO_CART'
 const PLUS_QTY = 'PLUS_QTY'
 const MINUS_QTY = 'MINUS_QTY'
 const CANCEL_CART = 'CANCEL_CART'
+const CHECKOUT = 'CHECKOUT'
+const REFRESH_CART = 'REFRESH_CART'
 
 const initialState = {
     storeItem: [
@@ -10,14 +12,27 @@ const initialState = {
             id: 1,
             title: 'Item 1',
             price: 100000,
+            category: 'Sweets',
             qty: 1,
+            stock: 3,
             status: true,
         },
         {
             id: 2,
             title: 'Item 2',
             price: 200000,
+            category: 'Drinks',
             qty: 1,
+            stock: 3,
+            status: true,
+        },
+        {
+            id: 3,
+            title: 'Item 3',
+            price: 200000,
+            category: 'Crisp',
+            qty: 1,
+            stock: 3,
             status: true,
         },
     ],
@@ -27,6 +42,7 @@ const initialState = {
         title: '',
         price: 0,
         qty: 1,
+        stock: 3,
         status: true,
     }
 }
@@ -55,6 +71,16 @@ export const cancelCart = payload => {
         payload
     }
 }
+export const checkout = () => {
+    return {
+        type: CHECKOUT,
+    }
+}
+export const refreshCart = () => {
+    return {
+        type: REFRESH_CART,
+    }
+}
 
 
 const Reducer = (state = initialState, action) => {
@@ -77,8 +103,8 @@ const Reducer = (state = initialState, action) => {
                         return item;
                     }
                 }),
-                
-                cart: [...state.cart,{ ...action.payload , price: action.payload.qty * action.payload.price} ]
+
+                cart: [...state.cart, { ...action.payload, price: action.payload.qty * action.payload.price }]
             }
         case CANCEL_CART:
             return {
@@ -97,7 +123,7 @@ const Reducer = (state = initialState, action) => {
         case PLUS_QTY:
             return {
                 ...state, storeItem: state.storeItem.map((item) => {
-                    if (item.id === action.payload && item.qty > 0) {
+                    if (item.id === action.payload && item.qty < item.stock) {
                         return {
                             ...item,
                             qty: item.qty + 1,
@@ -110,7 +136,7 @@ const Reducer = (state = initialState, action) => {
         case MINUS_QTY:
             return {
                 ...state, storeItem: state.storeItem.map((item) => {
-                    if (item.id === action.payload && item.qty - 1 > 0) {
+                    if (item.id === action.payload && item.qty > 1) {
                         return {
                             ...item,
                             qty: item.qty - 1,
@@ -119,6 +145,30 @@ const Reducer = (state = initialState, action) => {
                         return item;
                     }
                 })
+            }
+        case CHECKOUT:
+            return {
+                ...state, storeItem: state.storeItem.map((item) => {
+                    if (!item.status) {
+                        return {
+                            ...item,
+                            stock: item.stock - item.qty,
+                        };
+                    }else {
+                        return item;
+                    }
+                })
+            }
+        case REFRESH_CART:
+            return {
+                ...state, storeItem: state.storeItem.map((item) => {
+                    return {
+                        ...item,
+                        qty: 1,
+                        status: true,
+                    };
+                }),
+                cart: []
             }
         default:
             return state

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const Header = () => {
+const Header = ({title}) => {
   return (
     <HeaderContainer>
-      <div>Shopping Cart</div>
+      <div>{title}</div>
     </HeaderContainer>
   );
 };

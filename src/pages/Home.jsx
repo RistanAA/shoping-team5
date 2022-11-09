@@ -7,7 +7,7 @@ import ListItems from "../components/ListItems";
 const Home = () => {
   return (
     <Layout>
-      <Header />
+      <Header title={'Shoping Cart'}/>
       <ListContainer>
         <ListItems />
         <Cart />

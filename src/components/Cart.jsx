@@ -1,14 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { cancelCart } from "../redux/modules/items";
+import { cancelCart, checkout } from "../redux/modules/items";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.items.cart);
+  // const storeI = useSelector((state) => state.items);
+  const navigate = useNavigate()
   const dispatch = useDispatch()
-  console.log(cartItems)
+  // console.log(cartItems)
 
   const handleCancel = (id) => {
     dispatch(cancelCart(id))
+  }
+  const handleCheckout = () => {
+    dispatch(checkout())
+    // console.log(storeI)
   }
 
   let sum = 0
@@ -22,12 +29,12 @@ const Cart = () => {
           <CartItem key={item.id}>
             <ItemTitle>{item.title} x {item.qty}</ItemTitle>
             <ItemPrice>Rp. {item.price}</ItemPrice>
-
             <ItemButton borderColor={"red"} onClick={() => handleCancel(item.id)}>Cancel</ItemButton>
           </CartItem>
         );
       })}
-      <h1>{sum}</h1>
+      <h1>Rp {sum}</h1>
+      <CartButton disabled={cartItems.length > 0?null:'disabled'} borderColor={"green"} onClick={() => navigate('/checkout')}>Done</CartButton>
     </CartContainer>
   );
 };
@@ -54,7 +61,17 @@ const CartItem = styled.div`
   padding: 5px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 `;
+
+const CartButton = styled.button`
+  border: 1px solid ${({ borderColor }) => borderColor};
+  height: 40px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+`
 
 const ItemTitle = styled.span`
   text-decoration: none;

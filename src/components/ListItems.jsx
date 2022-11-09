@@ -7,38 +7,91 @@ import { addToCart, minusQty, plusQty } from "../redux/modules/items";
 const ListItems = () => {
   // const[item,setItem] = useState()
   const storeItems = useSelector((state) => state.items.storeItem);
-  const storeI = useSelector((state) => state.items);
-  const dispatch = useDispatch()
+  // const storeI = useSelector((state) => state.items);
+  const dispatch = useDispatch();
 
   const handlePlus = (id) => {
-    dispatch(plusQty(id))
-  }
+    dispatch(plusQty(id));
+  };
   const handleMinus = (id) => {
-    dispatch(minusQty(id))
-  }
+    dispatch(minusQty(id));
+  };
 
   const handleAdd = (item) => {
-    dispatch(addToCart(item))
-    console.log(storeI)
-  }
+    dispatch(addToCart(item));
+  };
 
   // console.log(storeItems)
   return (
     <ListContainer>
       <ListHeader>Item List</ListHeader>
+      <ItemCategory>Sweets</ItemCategory>
       {storeItems.map((item) => {
-        return (
-          <ListItem key={item.id}>
-            <ItemTitle>{item.title}</ItemTitle>
-            <ItemPrice>Rp. {item.price}</ItemPrice>
-            <QtyContainer>
-              <QtyButton onClick={()=> handleMinus(item.id)}>-</QtyButton>
-              <QtyInput readOnly value={item.qty} />
-              <QtyButton onClick={()=> handlePlus(item.id)}>+</QtyButton>
-            </QtyContainer>
-            <ItemButton borderColor={"blue"} onClick={() => handleAdd(item)} disabled={item.status?null:'disabled'}>Add</ItemButton>
-          </ListItem>
-        );
+        if(item.category == 'Sweets') {
+          return (
+            <ListItem key={item.id}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ListStock>stock: {item.stock}</ListStock>
+              <ItemPrice>Rp. {item.price}</ItemPrice>
+              <QtyContainer>
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handleMinus(item.id)}
+                >
+                  -
+                </QtyButton>
+                <QtyInput readOnly value={item.qty} />
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handlePlus(item.id)}
+                >
+                  +
+                </QtyButton>
+              </QtyContainer>
+              <ItemButton
+                borderColor={"blue"}
+                onClick={() => handleAdd(item)}
+                disabled={item.status && item.stock > 0 ? null : "disabled"}
+              >
+                Add
+              </ItemButton>
+            </ListItem>
+          );
+        }
+      })}
+      <ItemCategory>Drinks</ItemCategory>
+      {storeItems.map((item) => {
+        if(item.category == 'Sweets') {
+          return (
+            <ListItem key={item.id}>
+              <ItemTitle>{item.title}</ItemTitle>
+              <ListStock>stock: {item.stock}</ListStock>
+              <ItemPrice>Rp. {item.price}</ItemPrice>
+              <QtyContainer>
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handleMinus(item.id)}
+                >
+                  -
+                </QtyButton>
+                <QtyInput readOnly value={item.qty} />
+                <QtyButton
+                  disabled={item.status && item.stock > 0 ? null : "disabled"}
+                  onClick={() => handlePlus(item.id)}
+                >
+                  +
+                </QtyButton>
+              </QtyContainer>
+              <ItemButton
+                borderColor={"blue"}
+                onClick={() => handleAdd(item)}
+                disabled={item.status && item.stock > 0 ? null : "disabled"}
+              >
+                Add
+              </ItemButton>
+            </ListItem>
+          );
+        }
       })}
       {/* <ListItem>
         <ItemTitle>Item Title3</ItemTitle>
@@ -64,6 +117,15 @@ const ListContainer = styled.div`
   /* display: flex; */
 `;
 
+const ItemCategory = styled.span`
+  text-decoration: underline;
+`;
+
+const ListStock = styled.h5`
+  text-align: center;
+  width: 100px;
+  margin-right: 5px;
+`;
 const ListHeader = styled.h3`
   text-align: center;
 `;
