@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
-import { refreshCart, __checkout } from "../redux/modules/items";
+import { refreshCart, __checkout, __getStoreItems } from "../redux/modules/items";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.items.cart);
@@ -15,7 +15,8 @@ const Checkout = () => {
     dispatch(refreshCart());
     setTimeout(() => {
       navigate("/");
-    }, 1000);
+      dispatch(__getStoreItems())
+    }, 100);
     // console.log(storeI)
   };
   return (

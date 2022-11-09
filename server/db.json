@@ -6,7 +6,7 @@
       "price": 100000,
       "category": "Sweets",
       "qty": 1,
-      "stock": 0,
+      "stock": 1,
       "status": true
     },
     {
@@ -24,7 +24,7 @@
       "price": 300000,
       "category": "Crisp",
       "qty": 1,
-      "stock": 0,
+      "stock": 3,
       "status": true
     }
   ],
@@ -76,6 +76,294 @@
       "status": true,
       "title": "Item 3 db",
       "id": 6
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 7
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 8
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 9
+    },
+    {
+      "category": "Crisp",
+      "price": 300000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 10
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 11
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 12
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 13
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 14
+    },
+    {
+      "category": "Crisp",
+      "price": 900000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 15
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 16
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 17
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 18
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 19
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 20
+    },
+    {
+      "category": "Crisp",
+      "price": 900000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 21
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 22
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 23
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 24
+    },
+    {
+      "category": "Crisp",
+      "price": 900000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 25
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 26
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 27
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 28
+    },
+    {
+      "category": "Crisp",
+      "price": 300000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 29
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 30
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 31
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 32
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 33
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 34
+    },
+    {
+      "category": "Crisp",
+      "price": 900000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 35
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 36
+    },
+    {
+      "category": "Crisp",
+      "price": 300000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 37
+    },
+    {
+      "category": "Sweets",
+      "price": 100000,
+      "qty": 1,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 38
+    },
+    {
+      "category": "Crisp",
+      "price": 900000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 3 db",
+      "id": 39
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 40
+    },
+    {
+      "category": "Drinks",
+      "price": 600000,
+      "qty": 3,
+      "status": true,
+      "title": "Item 2 db",
+      "id": 41
+    },
+    {
+      "category": "Sweets",
+      "price": 200000,
+      "qty": 2,
+      "status": true,
+      "title": "Item 1 db",
+      "id": 42
     }
   ]
 }
