@@ -2,35 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 
 const initialState = {
-    storeItem: [
-        // {
-        //     id: 1,
-        //     title: 'Item 1',
-        //     price: 100000,
-        //     category: 'Sweets',
-        //     qty: 1,
-        //     stock: 3,
-        //     status: true,
-        // },
-        // {
-        //     id: 2,
-        //     title: 'Item 2',
-        //     price: 200000,
-        //     category: 'Drinks',
-        //     qty: 1,
-        //     stock: 3,
-        //     status: true,
-        // },
-        // {
-        //     id: 3,
-        //     title: 'Item 3',
-        //     price: 200000,
-        //     category: 'Crisp',
-        //     qty: 1,
-        //     stock: 3,
-        //     status: true,
-        // },
-    ],
+    storeItem: [],
     cart: [],
     item: {
         id: 0,
