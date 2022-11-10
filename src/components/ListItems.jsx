@@ -8,6 +8,7 @@ import {
   minusQty,
   __getStoreItems,
   __addToCart,
+  searchItems,
 } from "../redux/modules/items";
 import { useEffect, useState } from "react";
 
@@ -41,16 +42,23 @@ const ListItems = () => {
     setSearch(value);
   };
 
-  const handleSearch = (value, data) => {
-    let query = value.toLowerCase();
-    // console.log(query)
-    // console.log(data)
-    let filtered = data.filter(
-      (item) => item.title.toLowerCase().indexOf(query)>=0
-    );
-    setDataStore(filtered)
-    console.log(filtered)
+  const handleSearch = (value) => {
+    dispatch(__getStoreItems());
+    setTimeout(()=>{
+      dispatch(searchItems(value))
+    },400)
   };
+  // const handleSearch = (value, data) => {
+  //   let query = value.toLowerCase();
+  //   // console.log(query)
+  //   // console.log(data)
+  //   let filtered = data.filter(
+  //     (item) => item.title.toLowerCase().indexOf(query) >= 0
+  //   );
+  //   setDataStore(filtered);
+  //   dispatch(__getStoreItems());
+  //   console.log(filtered);
+  // };
 
   // if(loading.isLoading){
   //   console.log('loading...')
@@ -69,20 +77,24 @@ const ListItems = () => {
           onChange={handleChange}
           value={search}
         />
-        <ItemButton onClick={()=>handleSearch(search, storeItems)}>Search</ItemButton>
+        <ItemButton onClick={() => handleSearch(search, storeItems)}>
+          Search
+        </ItemButton>
       </SearchContainer>
-      <ItemCategory>Sweets</ItemCategory>
       {storeItems.map((item) => {
-        if (item.category === "Sweets") {
+        console.log(item)
           return (
             <ListItem key={item.id}>
-              <ItemTitle>{item.title}</ItemTitle>
+              <TitleContainer>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemCategory>{item.category}</ItemCategory>
+              </TitleContainer>
               <ListStock>stock: {item.stock}</ListStock>
               <ItemPrice>Rp. {item.price}</ItemPrice>
               <QtyContainer>
                 <QtyButton
                   disabled={item.status && item.stock > 0 ? null : "disabled"}
-                  onClick={() => handleMinus(item.id)}
+                  onClick={()=> handleMinus(item.id)}
                 >
                   -
                 </QtyButton>
@@ -103,100 +115,15 @@ const ListItems = () => {
               </ItemButton>
             </ListItem>
           );
-        } else {
-          return null;
-        }
       })}
-      <ItemCategory>Drinks</ItemCategory>
-      {storeItems.map((item) => {
-        if (item.category === "Drinks") {
-          return (
-            <ListItem key={item.id}>
-              <ItemTitle>{item.title}</ItemTitle>
-              <ListStock>stock: {item.stock}</ListStock>
-              <ItemPrice>Rp. {item.price}</ItemPrice>
-              <QtyContainer>
-                <QtyButton
-                  disabled={item.status && item.stock > 0 ? null : "disabled"}
-                  onClick={() => handleMinus(item.id)}
-                >
-                  -
-                </QtyButton>
-                <QtyInput readOnly value={item.qty} />
-                <QtyButton
-                  disabled={item.status && item.stock > 0 ? null : "disabled"}
-                  onClick={() => handlePlus(item.id)}
-                >
-                  +
-                </QtyButton>
-              </QtyContainer>
-              <ItemButton
-                borderColor={"blue"}
-                onClick={() => handleAdd(item)}
-                disabled={item.status && item.stock > 0 ? null : "disabled"}
-              >
-                Add
-              </ItemButton>
-            </ListItem>
-          );
-        } else {
-          return null;
-        }
-      })}
-      <ItemCategory>Crisp</ItemCategory>
-      {storeItems.map((item) => {
-        if (item.category === "Crisp") {
-          return (
-            <ListItem key={item.id}>
-              <ItemTitle>{item.title}</ItemTitle>
-              <ListStock>stock: {item.stock}</ListStock>
-              <ItemPrice>Rp. {item.price}</ItemPrice>
-              <QtyContainer>
-                <QtyButton
-                  disabled={item.status && item.stock > 0 ? null : "disabled"}
-                  onClick={() => handleMinus(item.id)}
-                >
-                  -
-                </QtyButton>
-                <QtyInput readOnly value={item.qty} />
-                <QtyButton
-                  disabled={item.status && item.stock > 0 ? null : "disabled"}
-                  onClick={() => handlePlus(item.id)}
-                >
-                  +
-                </QtyButton>
-              </QtyContainer>
-              <ItemButton
-                borderColor={"blue"}
-                onClick={() => handleAdd(item)}
-                disabled={item.status && item.stock > 0 ? null : "disabled"}
-              >
-                Add
-              </ItemButton>
-            </ListItem>
-          );
-        } else {
-          return null;
-        }
-      })}
-      {/* <ListItem>
-        <ItemTitle>Item Title3</ItemTitle>
-        <ItemPrice>Rp. tes321331132</ItemPrice>
-        <QtyContainer>
-          <QtyButton>-</QtyButton>
-          <QtyInput />
-          <QtyButton>+</QtyButton>
-        </QtyContainer>
-        <ItemButton borderColor={"blue"}>Add</ItemButton>
-      </ListItem> */}
     </ListContainer>
   );
 };
 
 const ListContainer = styled.div`
   border: 1px solid black;
-  background-color:#607466;
-  border-color:#f0f4ef;
+  background-color: #607466;
+  border-color: #f0f4ef;
   border-radius: 10px;
   width: 40%;
   height: 500px;
@@ -208,7 +135,7 @@ const ListContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  border-color:yellow;
+  border-color: yellow;
 `;
 
 const SearchInput = styled.input`
@@ -221,9 +148,24 @@ const SearchInput = styled.input`
 
 const ItemCategory = styled.span`
   text-decoration: underline;
-  font-style:italic;
+  font-style: italic;
   font-size: 14pt;
   color: #f0f4ef;
+`;
+
+const ItemTitle = styled(Link)`
+  text-decoration: none;
+  width: 200px;
+  color: #f0f4ef;
+  font-style: bold;
+`;
+
+const TitleContainer = styled.div`
+  /* background-color: red; */
+  justify-content: space-around;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ListStock = styled.h5`
@@ -244,20 +186,15 @@ const ListItem = styled.div`
   padding: 5px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
-  color:#f0f4ef;
+  margin-top: 10px;
+  color: #f0f4ef;
 `;
 
-const ItemTitle = styled(Link)`
-  text-decoration: none;
-  width: 200px;
-  color:#f0f4ef;
-  font-style:bold;
-`;
+
 
 const ItemPrice = styled.span`
   font-style: italic;
-  color:#f0f4ef;
+  color: #f0f4ef;
   width: 200px;
 `;
 
