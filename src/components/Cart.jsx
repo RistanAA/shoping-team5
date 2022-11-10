@@ -47,6 +47,8 @@ export default Cart;
 
 const CartContainer = styled.div`
   border: 1px solid black;
+  background-color:#607466;
+  border-color:#f0f4ef;
   border-radius: 10px;
   width: 40%;
   height: 500px;
@@ -56,6 +58,8 @@ const CartContainer = styled.div`
 
 const CartHeader = styled.h3`
   text-align: center;
+  font-sized:20pt;
+  color:#f0f4ef;
 `;
 
 const CartItem = styled.div`
@@ -66,23 +70,27 @@ const CartItem = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  color:#f0f4ef;
 `;
 
 const CartButton = styled.button`
   border: 1px solid ${({ borderColor }) => borderColor};
   height: 40px;
   width: 100%;
-  background-color: #fff;
+  background-color: #bfcc94;
   border-radius: 12px;
   cursor: pointer;
 `
 
 const ItemTitle = styled.span`
   text-decoration: none;
+  color:#f0f4ef;
+  font-style:bold;
 `;
 
 const ItemPrice = styled.span`
   font-style: italic;
+  color:#f0f4ef;
 `;
 
 const ItemButton = styled.button`

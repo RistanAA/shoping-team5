@@ -14,7 +14,7 @@ const Checkout = () => {
     dispatch(__checkout());
     dispatch(refreshCart());
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
       dispatch(__getStoreItems())
     }, 100);
     // console.log(storeI)
@@ -50,13 +50,15 @@ const CartButton = styled.button`
   margin-top: 50px;
   margin-left: 10%;
   width: 80%;
-  background-color: #fff;
+  background-color: #bfcc94;
   border-radius: 12px;
   cursor: pointer;
 `;
 
 const CheckoutContainer = styled.div`
   border: 1px solid black;
+  background-color:#607466;
+  border-color:#f0f4ef;
   border-radius: 10px;
   margin: auto;
   width: 50%;
@@ -65,6 +67,8 @@ const CheckoutContainer = styled.div`
 `;
 const CheckoutHeader = styled.h3`
   text-align: center;
+  font-sized:50pt;
+  color: #f0f4ef;
 `;
 
 const CheckoutItem = styled.div`
@@ -73,14 +77,17 @@ const CheckoutItem = styled.div`
   padding-left: 15%;
   align-items: center;
   margin-bottom: 10px;
+  color: #f0f4ef;
 `;
 
 const ItemTitle = styled.span`
   text-decoration: none;
+  color: #f0f4ef;
   width: 30%;
 `;
 
 const ItemPrice = styled.span`
   font-style: italic;
+  font-color:white;
   width: 20%;
 `;

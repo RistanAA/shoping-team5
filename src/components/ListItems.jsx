@@ -195,6 +195,8 @@ const ListItems = () => {
 
 const ListContainer = styled.div`
   border: 1px solid black;
+  background-color:#607466;
+  border-color:#f0f4ef;
   border-radius: 10px;
   width: 40%;
   height: 500px;
@@ -206,6 +208,7 @@ const ListContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  border-color:yellow;
 `;
 
 const SearchInput = styled.input`
@@ -218,6 +221,9 @@ const SearchInput = styled.input`
 
 const ItemCategory = styled.span`
   text-decoration: underline;
+  font-style:italic;
+  font-size: 14pt;
+  color: #f0f4ef;
 `;
 
 const ListStock = styled.h5`
@@ -227,6 +233,8 @@ const ListStock = styled.h5`
 `;
 const ListHeader = styled.h3`
   text-align: center;
+  font-size: 20pt;
+  color: #f0f4ef;
 `;
 
 const ListItem = styled.div`
@@ -237,15 +245,19 @@ const ListItem = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  color:#f0f4ef;
 `;
 
 const ItemTitle = styled(Link)`
   text-decoration: none;
   width: 200px;
+  color:#f0f4ef;
+  font-style:bold;
 `;
 
 const ItemPrice = styled.span`
   font-style: italic;
+  color:#f0f4ef;
   width: 200px;
 `;
 
@@ -253,7 +265,7 @@ const ItemButton = styled.button`
   border: 1px solid ${({ borderColor }) => borderColor};
   height: 40px;
   width: 120px;
-  background-color: #fff;
+  background-color: #bfcc94;
   border-radius: 12px;
   cursor: pointer;
 `;
